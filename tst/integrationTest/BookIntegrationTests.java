@@ -9,6 +9,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import main.Book;
 import main.BookDao;
 import org.junit.jupiter.api.AfterEach;
+import main.DynamoDbClientProvider;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -29,6 +30,10 @@ public class BookIntegrationTests {
 
         // make sure the ASINs we don't expect in db aren't there before tests begin
         // (after getting a DynamoDBMapper)
+        AmazonDynamoDB dynamoDBClient = DynamoDbClientProvider.REMOTE_CLIENT;
+
+        dynamoDBMapper = new DynamoDBMapper(dynamoDBClient);
+        bookDao = new BookDao(dynamoDBMapper);
         deleteTestData();
 
     }
