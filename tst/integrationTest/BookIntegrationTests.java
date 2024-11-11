@@ -24,7 +24,7 @@ public class BookIntegrationTests {
     private DynamoDBMapper dynamoDBMapper;
 
     @BeforeEach
-    private void setup() {
+    public void setup() {
         // PARTICIPANTS: use the DynamoDbClientProvider to get a client and create a DynamoDBMapper,
         //               then instantiate a BookDao for testing.
 
@@ -39,7 +39,7 @@ public class BookIntegrationTests {
     }
 
     @AfterEach
-    private void teardown() {
+    public void teardown() {
         deleteTestData();
     }
 
